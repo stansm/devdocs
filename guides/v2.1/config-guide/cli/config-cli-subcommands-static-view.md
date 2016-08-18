@@ -31,8 +31,8 @@ Static view files are located in the `<your Magento install dir>/pub/static` dir
 
 Static view files deployment is affected by Magento modes as follows:
 
-*	<a href="{{page.baseurl}}config-guide/bootstrap/magento-modes.html#mode-default">Default</a> and <a href="{{page.baseurl}}config-guide/bootstrap/magento-modes.html#mode-developer">Developer mode</a>: Magento generates them on demand, but the rest are cached in a file for speed of access.
-*	<a href="{{page.baseurl}}config-guide/bootstrap/magento-modes.html#mode-production">production</a> mode: Static files are *not* generated or cached. 
+*	<a href="{{page.baseurl}}config-guide/bootstrap/magento-modes.html#mode-default">The default</a> and <a href="{{page.baseurl}}config-guide/bootstrap/magento-modes.html#mode-developer">developer mode</a>: Magento generates them on demand, but the rest are cached in a file for speed of access.
+*	<a href="{{page.baseurl}}config-guide/bootstrap/magento-modes.html#mode-production">The production</a> mode: Static files are *not* generated or cached. 
 
 	You must write static view files to the Magento file system manually using the command discussed in this topic; after that, you can restrict permissions to limit your vulnerabilities and to prevent accidental or malicious overwriting of files.
 
@@ -92,72 +92,72 @@ The following table discusses the meanings of this command's parameters and valu
 	</tr>
     <tr>
         <td> --theme (-t) </td>
-        <td><p>  If specified, just specific theme(s) will be actually deployed. (default: ["all"]) (multiple values allowed) </p></td>
+        <td><p> Deploy only the specified theme(s). (default: ["all"]) (multiple values allowed) </p></td>
         <td><p>No</p></td>
     </tr>
     <tr>
         <td>  --exclude-theme </td>
-        <td><p>  If specified, exclude specific theme(s) from deployment. (default: ["none"]) (multiple values allowed) </p></td>
+        <td><p> Exclude the specified theme(s) from deployment. (default: ["none"]) (multiple values allowed) </p></td>
         <td><p>No</p></td>
     </tr>
     <tr>
         <td>   --language (-l) </td>
-        <td><p>  List of languages you want the tool populate files for. (default: ["all"]) (multiple values allowed) </p></td>
+        <td><p> Generate files only for the specified languages. (default: ["all"]) (multiple values allowed) </p></td>
         <td><p>No</p></td>
     </tr>
     <tr>
         <td>  --exclude-language </td>
-        <td><p>  List of langiages you do not want the tool populate files for. (default: ["none"]) (multiple values allowed)  </p></td>
+        <td><p> Generate files for the specified languages. (default: ["none"]) (multiple values allowed)  </p></td>
         <td><p>No</p></td>
     </tr>
     <tr>
         <td>  --area (-a) </td>
-        <td><p>  List of areas you want the tool populate files for. (default: ["all"]) (multiple values allowed) </p></td>
+        <td><p> Generate files only for the specified areas (default: ["all"]) (multiple values allowed) </p></td>
         <td><p>No</p></td>
     </tr>
     <tr>
         <td>  --exclude-area </td>
-        <td><p>  List of areas you do not want the tool populate files for. (default: ["none"]) (multiple values allowed) </p></td>
+        <td><p> Do not generate files for the specified areas. (default: ["none"]) (multiple values allowed) </p></td>
         <td><p>No</p></td>
     </tr>
     <tr>
         <td>  --no-javascript  </td>
-        <td><p> If specified, no JavaScript will be deployed.  </p></td>
+        <td><p> Do not deploy JavaScript files</p></td>
         <td><p>No</p></td>
     </tr>
     <tr>
         <td>  --no-css </td>
-        <td><p>  If specified, no CSS will be deployed. </p></td>
+        <td><p> Do not deploy CSS files. </p></td>
         <td><p>No</p></td>
     </tr>
     <tr>
         <td>  --no-less  </td>
-        <td><p>  If specified, no LESS will be deployed. </p></td>
+        <td><p> Do not deploy LESS files. </p></td>
         <td><p>No</p></td>
     </tr>
     <tr>
         <td> --no-images </td>
-        <td> If specified, no images will be deployed. </td>
+        <td> Do not deploy images. </td>
         <td><p>No</p></td>
     </tr>
     <tr>
         <td>  --no-fonts </td>
-        <td><p>  If specified, no font files will be deployed. </p></td>
+        <td><p> Do not deploy the font files. </p></td>
         <td><p>No</p></td>
     </tr>
     <tr>
         <td><p>   --no-html </p></td>
-        <td><p>  If specified, no html files will be deployed. </p></td>
+        <td><p> Do not deploy the HTML files. </p></td>
         <td><p>No</p></td>
     </tr>
     <tr>
         <td>  --no-misc  </td>
-        <td><p>  If specified, no miscellaneous files will be deployed. </p></td>
+        <td><p> Do not deploy the miscellaneous files (that is .md, .jbf, .csv, .json, .txt, .htc, .swf files). </p></td>
         <td><p>No</p></td>
     </tr>
     <tr>
         <td>  --no-html-minify </td>
-        <td><p> If specified, html will not be minified.     </p></td>
+        <td><p> Do not minify the HTML files.  </p></td>
         <td><p>No</p></td>
     </tr>
     <tr>
