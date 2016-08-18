@@ -102,7 +102,9 @@ The following table discusses the meanings of this command's parameters and valu
     </tr>
     <tr>
         <td>   --language (-l) </td>
-        <td><p> Generate files only for the specified languages. (default: ["all"]) (multiple values allowed) </p></td>
+        <td><p> Generate files only for the specified languages. (default: ["all"]) (multiple values allowed). Example: to deploy static view files for the `pt_BR` language, enter
+
+	magento setup:static-content:deploy pt_BR</p></td>
         <td><p>No</p></td>
     </tr>
     <tr>
@@ -162,62 +164,18 @@ The following table discusses the meanings of this command's parameters and valu
     </tr>
     <tr>
         <td>   --jobs (-j) </td>
-        <td><p> Amount of jobs to which script can be paralleled. (default: 4)  </p></td>
+        <td><p> Parallel the script to the specified number of jobs. (default: 4). If your system does not support process forking, then it will be executed in one process (or you can specify `-j 1` for run not in parallel.</p></td>
         <td><p>No</p></td>
     </tr>
     <tr>
         <td>  --force (-f) </td>
-        <td><p> If specified, then run files will be deployed in any mode.  </p></td>
+        <td><p> Deploy files in any mode. (by default, static content content deployment tool can be run only in production mode. Use this option to run it in default or developer mode).
+  </p></td>
         <td><p>No</p></td>
     </tr>
 
 	</tbody>
 </table>
-
-For example, to deploy static view files for the `pt_BR` language, enter
-
-	magento setup:static-content:deploy pt_BR
-
-Following are some sample messages that display to indicate successful deployment:
-
-	Requested languages: pt_BR
-	=== frontend -> Magento/luma -> pt_BR ===
-	... progress indicator ...
-	Successful: 1613 files; errors: 0
-
-	=== frontend -> Magento/blank -> pt_BR ===
-	... progress indicator ...
-	Successful: 1620 files; errors: 0
-
-	=== adminhtml -> Magento/backend -> pt_BR ===
-	... progress indicator ...
-	Successful: 1626 files; errors: 0
-
-	=== Minify templates ===
-	... progress indicator ...
-	Successful: 858 files modified
-	---
-	New version of deployed files: 1430773903
-
-
-
-
-**Features**:
-
-1. Run in parallel.  In order to speed up deploy static files, process has been parallelized. Please check `--jobs (-j)` option.
-   If your system do not support process forking then it will be executed in one process (or you can specify `-j 1` for run not in parallel)
-
-2. Configure process. You can configure static deploy process for your needs to generate only needed files.
-   E.g. you have custom theme for store front `Vendor/Theme` and want to deploy static view files only for this theme and three languages: `en_US, uk_UA, de_DE` enter:
-
-	`magento setup:static-content:deploy --theme Vendor/Theme en_US uk_UA de_DE`
-	This command will deploy static files only for frontend area 'Vendor/Theme' theme for three given languages
-
-
-3. Due to static files deployed in default or developer mode on demand `magento setup:static-content:deploy` can be run only in production mode by default
-   If in some reasons you want to deploy static files not in production mode, please use `-f` option:
-
-	`magento setup:static-content:deploy -f`
 
 
 <h2 id="view-file-trouble">Troubleshooting the static view files deployment tool</h2>
