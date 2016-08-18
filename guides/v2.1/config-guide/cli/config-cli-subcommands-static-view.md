@@ -31,8 +31,8 @@ Static view files are located in the `<your Magento install dir>/pub/static` dir
 
 Static view files deployment is affected by Magento modes as follows:
 
-*	<a href="{{page.baseurl}}config-guide/bootstrap/magento-modes.html#mode-developer">Developer mode</a>: Magento generates them on demand, but the rest are cached in a file for speed of access.
-*	<a href="{{page.baseurl}}config-guide/bootstrap/magento-modes.html#mode-default">Default</a> and <a href="{{page.baseurl}}config-guide/bootstrap/magento-modes.html#mode-production">production</a> modes: Static files are *not* generated or cached. 
+*	<a href="{{page.baseurl}}config-guide/bootstrap/magento-modes.html#mode-default">Default</a> and <a href="{{page.baseurl}}config-guide/bootstrap/magento-modes.html#mode-developer">Developer mode</a>: Magento generates them on demand, but the rest are cached in a file for speed of access.
+*	<a href="{{page.baseurl}}config-guide/bootstrap/magento-modes.html#mode-production">production</a> mode: Static files are *not* generated or cached. 
 
 	You must write static view files to the Magento file system manually using the command discussed in this topic; after that, you can restrict permissions to limit your vulnerabilities and to prevent accidental or malicious overwriting of files.
 
@@ -65,7 +65,7 @@ To deploy static view files:
 
 Command options:
 
-	magento setup:static-content:deploy <lang> ... <lang> [--dry-run] 
+	magento setup:static-content:deploy [languages1] ... [languagesN] [-t|--theme[="..."]] [--exclude-theme[="..."]] [-l|--language[="..."]] [--exclude-language[="..."]] [-a|--area[="..."]] [--exclude-area[="..."]] [-j|--jobs[="..."]] [-d|--dry-run] [-f|--force] [--no-javascript] [--no-css] [--no-less] [--no-images] [--no-fonts] [--no-html] [--no-misc] [--no-html-minify]
 
 The following table discusses the meanings of this command's parameters and values. 
 
@@ -90,12 +90,93 @@ The following table discusses the meanings of this command's parameters and valu
 		<td><p>Include to view the files output by the tool without outputting anything.</p></td>
 		<td><p>No</p></td>
 	</tr>
+    <tr>
+        <td> --theme (-t) </td>
+        <td><p>  If specified, just specific theme(s) will be actually deployed. (default: ["all"]) (multiple values allowed) </p></td>
+        <td><p>No</p></td>
+    </tr>
+    <tr>
+        <td>  --exclude-theme </td>
+        <td><p>  If specified, exclude specific theme(s) from deployment. (default: ["none"]) (multiple values allowed) </p></td>
+        <td><p>No</p></td>
+    </tr>
+    <tr>
+        <td>   --language (-l) </td>
+        <td><p>  List of languages you want the tool populate files for. (default: ["all"]) (multiple values allowed) </p></td>
+        <td><p>No</p></td>
+    </tr>
+    <tr>
+        <td>  --exclude-language </td>
+        <td><p>  List of langiages you do not want the tool populate files for. (default: ["none"]) (multiple values allowed)  </p></td>
+        <td><p>No</p></td>
+    </tr>
+    <tr>
+        <td>  --area (-a) </td>
+        <td><p>  List of areas you want the tool populate files for. (default: ["all"]) (multiple values allowed) </p></td>
+        <td><p>No</p></td>
+    </tr>
+    <tr>
+        <td>  --exclude-area </td>
+        <td><p>  List of areas you do not want the tool populate files for. (default: ["none"]) (multiple values allowed) </p></td>
+        <td><p>No</p></td>
+    </tr>
+    <tr>
+        <td>  --no-javascript  </td>
+        <td><p> If specified, no JavaScript will be deployed.  </p></td>
+        <td><p>No</p></td>
+    </tr>
+    <tr>
+        <td>  --no-css </td>
+        <td><p>  If specified, no CSS will be deployed. </p></td>
+        <td><p>No</p></td>
+    </tr>
+    <tr>
+        <td>  --no-less  </td>
+        <td><p>  If specified, no LESS will be deployed. </p></td>
+        <td><p>No</p></td>
+    </tr>
+    <tr>
+        <td> --no-images </td>
+        <td> If specified, no images will be deployed. </td>
+        <td><p>No</p></td>
+    </tr>
+    <tr>
+        <td>  --no-fonts </td>
+        <td><p>  If specified, no font files will be deployed. </p></td>
+        <td><p>No</p></td>
+    </tr>
+    <tr>
+        <td><p>   --no-html </p></td>
+        <td><p>  If specified, no html files will be deployed. </p></td>
+        <td><p>No</p></td>
+    </tr>
+    <tr>
+        <td>  --no-misc  </td>
+        <td><p>  If specified, no miscellaneous files will be deployed. </p></td>
+        <td><p>No</p></td>
+    </tr>
+    <tr>
+        <td>  --no-html-minify </td>
+        <td><p> If specified, html will not be minified.     </p></td>
+        <td><p>No</p></td>
+    </tr>
+    <tr>
+        <td>   --jobs (-j) </td>
+        <td><p> Amount of jobs to which script can be paralleled. (default: 4)  </p></td>
+        <td><p>No</p></td>
+    </tr>
+    <tr>
+        <td>  --force (-f) </td>
+        <td><p> If specified, then run files will be deployed in any mode.  </p></td>
+        <td><p>No</p></td>
+    </tr>
+
 	</tbody>
 </table>
 
 For example, to deploy static view files for the `pt_BR` language, enter
 
-	magento --ansi setup:static-content:deploy pt_BR
+	magento setup:static-content:deploy pt_BR
 
 Following are some sample messages that display to indicate successful deployment:
 
@@ -117,6 +198,27 @@ Following are some sample messages that display to indicate successful deploymen
 	Successful: 858 files modified
 	---
 	New version of deployed files: 1430773903
+
+
+
+
+**Features**:
+
+1. Run in parallel.  In order to speed up deploy static files, process has been parallelized. Please check `--jobs (-j)` option.
+   If your system do not support process forking then it will be executed in one process (or you can specify `-j 1` for run not in parallel)
+
+2. Configure process. You can configure static deploy process for your needs to generate only needed files.
+   E.g. you have custom theme for store front `Vendor/Theme` and want to deploy static view files only for this theme and three languages: `en_US, uk_UA, de_DE` enter:
+
+	`magento setup:static-content:deploy --theme Vendor/Theme en_US uk_UA de_DE`
+	This command will deploy static files only for frontend area 'Vendor/Theme' theme for three given languages
+
+
+3. Due to static files deployed in default or developer mode on demand `magento setup:static-content:deploy` can be run only in production mode by default
+   If in some reasons you want to deploy static files not in production mode, please use `-f` option:
+
+	`magento setup:static-content:deploy -f`
+
 
 <h2 id="view-file-trouble">Troubleshooting the static view files deployment tool</h2>
 <a href="{{page.baseurl}}install-gde/bk-install-guide.html">Install the Magento software first</a>; otherwise, you cannot run the static view files deployment tool.
