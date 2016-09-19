@@ -65,7 +65,7 @@ To deploy static view files:
 
 Command options:
 
-	magento setup:static-content:deploy [<list of locales>] [-t|--theme[="<list>"]] [--exclude-theme[="<list>"]] [-l|--language[="<list>"]] [--exclude-language[="<list>"]] [-a|--area[="<list>"]] [--exclude-area[="<list>"]] [-j|--jobs[="<number>"]] [-d|--dry-run] [-f|--force] [--no-javascript] [--no-css] [--no-less] [--no-images] [--no-fonts] [--no-html] [--no-misc] [--no-html-minify]
+	magento setup:static-content:deploy [<list of locales>] [-t|--theme[="<theme>"]] [--exclude-theme[="<theme>"]] [-l|--language[="<language>"]] [--exclude-language[="<language>"]] [-a|--area[="<area>"]] [--exclude-area[="<area>"]] [-j|--jobs[="<number>"]] [-d|--dry-run] [-f|--force] [--no-javascript] [--no-css] [--no-less] [--no-images] [--no-fonts] [--no-html] [--no-misc] [--no-html-minify]
 
 The following table discusses the meanings of this command's parameters and values. 
 
@@ -80,25 +80,15 @@ The following table discusses the meanings of this command's parameters and valu
 			<th>Required?</th>
 		</tr>
 	<tr>
-		<td>&lt;list of locales></td>
-		<td><p>Space-separated list of <a href="http://www.loc.gov/standards/iso639-2/php/code_list.php" target="_blank">ISO-636</a> language codes for which to output static view files. (Default is <code>en_US</code>.)</p>
-		<p>You can find the list by running <code>magento info:language:list</code>.</p></td>
-	<td><p>No</p></td>
-	</tr>
-	
-    <tr>
-        <td>--theme (-t)</td>
-        <td><p>Generate static view files for only the specified themes. The default, with no option specified, is to generate files for all themes. You can specify the name of one theme or a comma-separated list of themes.</p></td>
-        <td><p>No</p></td>
+        <td>&lt;lang></td>
+        <td><p>List of <a href="http://www.loc.gov/standards/iso639-2/php/code_list.php" target="_blank">ISO-636</a> language codes for which to output static view files. (Default is <code>en_US</code>.)</p>
+        <p>You can find the list by running <code>magento info:language:list</code>.</p></td>
+    <td><p>No</p></td>
     </tr>
-    <tr>
-        <td>--exclude-theme</td>
-        <td><p> Exclude the specified theme(s) from deployment. (default: ["none"]) (multiple values allowed) </p></td>
-        <td><p>No</p></td>
-    </tr>
-    <tr>
+	<tr>
         <td>--language (-l)</td>
-        <td><p> Generate files only for the specified languages. The default, with no option specified, is to generate files for all <a href="http://www.loc.gov/standards/iso639-2/php/code_list.php" target="_blank">ISO-636</a> language codes. You can specify the name of one language code or a comma-separated list of language codes.</p></td>
+        <td><p> Generate files only for the specified languages. The default, with no option specified, is to generate files for all <a href="http://www.loc.gov/standards/iso639-2/php/code_list.php" target="_blank">ISO-636</a> language codes. You can specify the name of one language code at a time.</p>
+            <p>For example, <code>--language en_US --language es_ES</code></p></td>
         <td><p>No</p></td>
     </tr>
     <tr>
@@ -107,8 +97,26 @@ The following table discusses the meanings of this command's parameters and valu
         <td><p>No</p></td>
     </tr>
     <tr>
+        <td>--theme &lt;theme></td>
+        <td><p>List of themes for which to deploy static content.</p>
+            <p>For example, <code>--theme Magento/blank --theme Magento/luma</code></p></td>
+        <td><p>No</p></td>
+    </tr>
+    <tr>
+        <td>--exclude-theme &lt;theme></td>
+        <td><p>List of themes to exclude when deploying static content.</p>
+            <p>For example, <code>--exclude-theme Magento/blank --theme Magento/luma</code></p></td>
+        <td><p>No</p></td>
+    </tr>
+    <tr>
         <td>--area (-a)</td>
-        <td><p>Generate files only for the specified areas. The default, with no option specified, is to generate files for all areas. You can specify the name of one area or a comma-separated list of areas. </p></td>
+        <td><p>Generate files only for the specified areas. The default, with no option specified, is to generate files for all areas. Valid values are <code>adminhtml</code> and <code>frontend</code>.</p>
+            <p>For example, <code>--area adminthml</code></p></td>
+        <td><p>No</p></td>
+    </tr>
+    <tr>
+        <td>--exclude-area</td>
+        <td><p>Do not generate files for the specified areas. The default, with no option specified, is to exclude nothing. </p></td>
         <td><p>No</p></td>
     </tr>
     <tr>
@@ -117,15 +125,11 @@ The following table discusses the meanings of this command's parameters and valu
         <td><p>No</p></td>
     </tr>
     <tr>
-        <td>--dry-run</td>
+        <td>--dry-run (-d)</td>
         <td><p>Include to view the files output by the tool without outputting anything.</p></td>
         <td><p>No</p></td>
     </tr>
-    <tr>
-        <td>--exclude-area</td>
-        <td><p> Do not generate files for the specified areas. The default, with no option specified, is to exclude nothing. You can specify the name of one area code or a comma-separated list of area codes. </p></td>
-        <td><p>No</p></td>
-    </tr>
+    
     <tr>
         <td>--no-javascript</td>
         <td><p>Do not deploy JavaScript files</p></td>
@@ -138,22 +142,22 @@ The following table discusses the meanings of this command's parameters and valu
     </tr>
     <tr>
         <td>--no-less</td>
-        <td><p> Do not deploy LESS files. </p></td>
+        <td><p>Do not deploy LESS files. </p></td>
         <td><p>No</p></td>
     </tr>
     <tr>
         <td>--no-images</td>
-        <td> Do not deploy images. </td>
+        <td>Do not deploy images.</td>
         <td><p>No</p></td>
     </tr>
     <tr>
-        <td>--no-fonts </td>
-        <td><p> Do not deploy font files. </p></td>
+        <td>--no-fonts</td>
+        <td><p>Do not deploy font files.</p></td>
         <td><p>No</p></td>
     </tr>
     <tr>
-        <td><p>--no-html </p></td>
-        <td><p>Do not deploy HTML files. </p></td>
+        <td><p>--no-html</p></td>
+        <td><p>Do not deploy HTML files.</p></td>
         <td><p>No</p></td>
     </tr>
     <tr>
@@ -176,6 +180,55 @@ The following table discusses the meanings of this command's parameters and valu
 
 	</tbody>
 </table>
+
+<div class="bs-callout bs-callout-info" id="info">
+  <p>If you specify values for both <code>&lt;lang></code> and <code>--language</code>, <code>&lt;lang></code> takes precedence.</p>
+</div>
+
+### Examples
+Following are some example commands.
+
+#### Excluding a theme and HTML minification
+The following command deploys static content for the US English (`en_US`) language, excludes the Luma theme provided with Magento, and does not minify HTML files.
+
+    magento setup:static-content:deploy en_US --exclude-theme Magento/luma --no-html-minify
+
+Sample output:
+
+    Requested languages: en_US
+    Requested areas: frontend, adminhtml
+    Requested themes: Magento/blank, Magento/backend
+    === frontend -> Magento/blank -> en_US ===
+    === adminhtml -> Magento/backend -> en_US ===
+    ...........................................................
+    ... more ...
+    Successful: 2055 files; errors: 0
+    ---
+
+    New version of deployed files: 1466710645
+    ............
+    Successful: 1993 files; errors: 0
+    ---
+
+#### Generating static view files for one theme and one area
+The following command generates static view files for all languages, the frontend area only, the Magento Luma theme only, without generating fonts:
+
+    magento setup:static-content:deploy --area frontend --no-fonts --theme Magento/luma
+
+Sample output:
+
+    Requested languages: en_US
+    Requested areas: frontend
+    Requested themes: Magento/luma
+    === frontend -> Magento/luma -> en_US ===
+    ...........................................................
+    ... more ...
+    ........................................................................
+    Successful: 2092 files; errors: 0
+    ---
+
+    New version of deployed files: 1466711110
+
 
 
 <h2 id="view-file-trouble">Troubleshooting the static view files deployment tool</h2>
