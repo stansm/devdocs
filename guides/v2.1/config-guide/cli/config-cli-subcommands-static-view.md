@@ -65,7 +65,7 @@ To deploy static view files:
 
 Command options:
 
-	magento setup:static-content:deploy [<list of locales>] [-t|--theme[="<theme>"]] [--exclude-theme[="<theme>"]] [-l|--language[="<language>"]] [--exclude-language[="<language>"]] [-a|--area[="<area>"]] [--exclude-area[="<area>"]] [-j|--jobs[="<number>"]] [-d|--dry-run] [-f|--force] [--no-javascript] [--no-css] [--no-less] [--no-images] [--no-fonts] [--no-html] [--no-misc] [--no-html-minify]
+	magento setup:static-content:deploy [<list of locales>] [-t|--theme[="<theme>"]] [--exclude-theme[="<theme>"]] [-l|--language[="<language>"]] [--exclude-language[="<language>"]] [-a|--area[="<area>"]] [--exclude-area[="<area>"]] [-j|--jobs[="<number>"]]  [--no-javascript] [--no-css] [--no-less] [--no-images] [--no-fonts] [--no-html] [--no-misc] [--no-html-minify] [-d|--dry-run] [-f|--force]
 
 The following table discusses the meanings of this command's parameters and values. 
 
@@ -87,24 +87,24 @@ The following table discusses the meanings of this command's parameters and valu
     </tr>
 	<tr>
         <td>--language (-l)</td>
-        <td><p> Generate files only for the specified languages. The default, with no option specified, is to generate files for all <a href="http://www.loc.gov/standards/iso639-2/php/code_list.php" target="_blank">ISO-636</a> language codes. You can specify the name of one language code at a time.</p>
+        <td><p>Generate files only for the specified languages. The default, with no option specified, is to generate files for all <a href="http://www.loc.gov/standards/iso639-2/php/code_list.php" target="_blank">ISO-636</a> language codes. You can specify the name of one language code at a time.</p>
             <p>For example, <code>--language en_US --language es_ES</code></p></td>
         <td><p>No</p></td>
     </tr>
     <tr>
         <td>--exclude-language</td>
-        <td><p> Generate files for the specified language codes. The default, with no option specified, is to exclude nothing. You can specify the name of one language code or a comma-separated list of language codes.</p></td>
+        <td><p>Generate files for the specified language codes. The default, with no option specified, is to exclude nothing. You can specify the name of one language code or a comma-separated list of language codes.</p></td>
         <td><p>No</p></td>
     </tr>
     <tr>
         <td>--theme &lt;theme></td>
-        <td><p>List of themes for which to deploy static content.</p>
+        <td><p>Themes for which to deploy static content.</p>
             <p>For example, <code>--theme Magento/blank --theme Magento/luma</code></p></td>
         <td><p>No</p></td>
     </tr>
     <tr>
         <td>--exclude-theme &lt;theme></td>
-        <td><p>List of themes to exclude when deploying static content.</p>
+        <td><p>Themes to exclude when deploying static content.</p>
             <p>For example, <code>--exclude-theme Magento/blank --theme Magento/luma</code></p></td>
         <td><p>No</p></td>
     </tr>
@@ -124,12 +124,6 @@ The following table discusses the meanings of this command's parameters and valu
         <td><p>Enable parallel processing using the specified number of jobs. The default is 4. To cause the task to run in one process (for example, if your system does not support process forking), use <code>--jobs 1</code>.</p></td>
         <td><p>No</p></td>
     </tr>
-    <tr>
-        <td>--dry-run (-d)</td>
-        <td><p>Include to view the files output by the tool without outputting anything.</p></td>
-        <td><p>No</p></td>
-    </tr>
-    
     <tr>
         <td>--no-javascript</td>
         <td><p>Do not deploy JavaScript files</p></td>
@@ -170,7 +164,11 @@ The following table discusses the meanings of this command's parameters and valu
         <td><p> Do not minify HTML files.  </p></td>
         <td><p>No</p></td>
     </tr>
-    
+    <tr>
+        <td>--dry-run (-d)</td>
+        <td><p>Include to view the files output by the tool without outputting anything.</p></td>
+        <td><p>No</p></td>
+    </tr>
     <tr>
         <td>--force (-f)</td>
         <td><p> Deploy files in any mode. (by default, static content content deployment tool can be run only in production mode. Use this option to run it in default or developer mode).
