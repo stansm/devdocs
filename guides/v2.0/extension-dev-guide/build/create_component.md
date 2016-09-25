@@ -27,7 +27,7 @@ You give a name to your component in its `composer.json` and `module.xml` files.
 Before you continue, make sure you have completed all of the following tasks:
 
 *   Created a [file structure]({{page.baseurl}}extension-dev-guide/build/module-file-structure.html)
-*   Created the the [configuration files]({{page.baseurl}}extension-dev-guide/build/required-configuration-files.html) you'll need
+*   Created the [configuration files]({{page.baseurl}}extension-dev-guide/build/required-configuration-files.html) you'll need
 *   [Registered]({{page.baseurl}}extension-dev-guide/build/component-registration.html) your component
 
 ## Add the component's `module.xml` file {#module-xml}
@@ -93,14 +93,14 @@ A sample follows:
 
 where:
 
-* `name`&mdash;is the name of your component.
-* `description`&mdash;is a concise explanation of your component's purpose.
-* `require`&mdash;lists any components your component depends on.
-* `suggest`&mdash;lists soft dependencies. The component can operate without them, but if the components are active, this component might impact their functionality. `Suggest` does not affect component load order.
-* `type`&mdash;determines what the Magento component type. Choose from *magento2-theme*, *magento2-language*, or *magento2-module*.
-* `version`&mdash;lists the version of the component.
-* `license`&mdash;lists applicable licenses that apply to your component.
-* `autoload`&mdash;instructs composer to load the specified files.
+* `name` &mdash; is the name of your component.
+* `description` &mdash; is a concise explanation of your component's purpose.
+* `require` &mdash; lists any components your component depends on.
+* `suggest` &mdash; lists soft dependencies. The component can operate without them, but if the components are active, this component might impact their functionality. `Suggest` does not affect component load order.
+* `type` &mdash; determines what the Magento component type. Choose from *magento2-theme*, *magento2-language*, or *magento2-module*.
+* `version` &mdash; lists the version of the component.
+* `license` &mdash; lists applicable licenses that apply to your component.
+* `autoload` &mdash; instructs composer to load the specified files.
 
 <div class="bs-callout bs-callout-info" id="info">
   <p>Magento does not currently support the <a href="https://getcomposer.org/doc/05-repositories.md#path" target="_blank"><code>path</code></a> repository.</p>
